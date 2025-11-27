@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPTEL`</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #0056b3;
+            --secondary: #003d82;
+            --accent: #ff6b00;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        .logo-text h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-login {
+            background-color: transparent;
+            border: 1px solid white;
+            color: white;
+        }
+
+        .btn-register {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .btn-login:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-register:hover {
+            background-color: #e05a00;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 84, 179, 0.8), rgba(0, 61, 130, 0.9)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .search-box {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 1rem;
+        }
+
+        .search-box button {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0 25px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-box button:hover {
+            background-color: #e05a00;
+        }
+
+        /* Courses Section */
+        .section-title {
+            text-align: center;
+            margin: 50px 0 30px;
+            color: var(--primary);
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .courses {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .course-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-img {
+            height: 180px;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .course-content {
+            padding: 20px;
+        }
+
+        .course-content h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .course-content p {
+            color: var(--gray);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray);
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+
+        .btn-course {
+            background-color: var(--primary);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .btn-course:hover {
+            background-color: var(--secondary);
+        }
+
+        /* Announcements */
+        .announcements {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 50px;
+        }
+
+        .announcement-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .announcement-item:last-child {
+            border-bottom: none;
+        }
+
+        .announcement-item h4 {
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .announcement-item p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .announcement-date {
+            color: var(--accent);
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .stat-text {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Partners Section */
+        .partners {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin: 50px 0;
+        }
+
+        .partner-logo {
+            height: 60px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .partner-logo:hover {
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            nav ul {
+                gap: 15px;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 90px;
+                left: 0;
+                width: 100%;
+                background-color: var(--secondary);
+                padding: 20px;
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .auth-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+            }
+            
+            .search-box {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .search-box input, .search-box button {
+                border-radius: 4px;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>NPTEL</h1>
+                    <p>National Programme on Technology Enhanced Learning</p>
+                </div>
+            </div>
+            
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">Courses</a></li>
+                    <li><a href="#">Assignments</a></li>
+                    <li><a href="#">Results</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons">
+                <button class="btn btn-login">Login</button>
+                <button class="btn btn-register">Register</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h2>Learn from India's Premier Institutions</h2>
+            <p>Access high-quality courses from IITs and IISc completely free of cost</p>
+            <div class="search-box">
+                <input type="text" placeholder="Search for courses...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="container">
+        <div class="section-title">
+            <h2>Popular Courses</h2>
+            <p>Explore our wide range of courses across various disciplines</p>
+        </div>
+        
+        <div class="courses">
+            <div class="course-card">
+                <div class="course-img" style="background-color: #2c3e50;">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <div class="course-content">
+                    <h3>Programming, Data Structures and Algorithms</h3>
+                    <p>Learn fundamental programming concepts and problem-solving techniques.</p>
+                    <div class="course-meta">
+                        <span><i class="far fa-clock"></i> 12 weeks</span>
+                        <span><i class="fas fa-user-graduate"></i> IIT Madras</span>
+                    </div>
+                    <a href="#" class="btn-course">Enroll Now</a>
+                </div>
+            </div>
+            
+            <div class="course-card">
+                <div class="course-img" style="background-color: #27ae60;">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="course-content">
+                    <h3>Introduction to Machine Learning</h3>
+                    <p>Understand the fundamentals of machine learning algorithms and applications.</p>
+                    <div class="course-meta">
+                        <span><i class="far fa-clock"></i> 8 weeks</span>
+                        <span><i class="fas fa-user-graduate"></i> IIT Kharagpur</span>
+                    </div>
+                    <a href="#" class="btn-course">Enroll Now</a>
+                </div>
+            </div>
+            
+            <div class="course-card">
+                <div class="course-img" style="background-color: #8e44ad;">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <div class="course-content">
+                    <h3>Basic Electrical Circuits</h3>
+                    <p>Learn about circuit analysis, network theorems, and AC circuits.</p>
+                    <div class="course-meta">
+                        <span><i class="far fa-clock"></i> 10 weeks</span>
+                        <span><i class="fas fa-user-graduate"></i> IIT Bombay</span>
+                    </div>
+                    <a href="#" class="btn-course">Enroll Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Announcements Section -->
+    <section class="container">
+        <div class="section-title">
+            <h2>Latest Announcements</h2>
+            <p>Stay updated with the latest news and important information</p>
+        </div>
+        
+        <div class="announcements">
+            <div class="announcement-item">
+                <h4>Registration for Jan 2024 Semester Now Open</h4>
+                <p>Students can now register for courses starting in January 2024. The last date for registration is December 15, 2023.</p>
+                <div class="announcement-date">November 10, 2023</div>
+            </div>
+            
+            <div class="announcement-item">
+                <h4>New Courses Added to NPTEL Portfolio</h4>
+                <p>We have added 15 new courses across various disciplines including AI, Cybersecurity, and Sustainable Engineering.</p>
+                <div class="announcement-date">October 28, 2023</div>
+            </div>
+            
+            <div class="announcement-item">
+                <h4>Exam Schedule for July 2023 Semester Released</h4>
+                <p>The examination schedule for the July 2023 semester has been published. Please check your registered email for details.</p>
+                <div class="announcement-date">October 15, 2023</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container stats-container">
+            <div class="stat-item">
+                <div class="stat-number">5000+</div>
+                <div class="stat-text">Courses Offered</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">10M+</div>
+                <div class="stat-text">Enrollments</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">200+</div>
+                <div class="stat-text">Partner Institutions</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">15+</div>
+                <div class="stat-text">Years of Excellence</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="container">
+        <div class="section-title">
+            <h2>Our Partner Institutions</h2>
+            <p>Collaborating with India's premier educational institutions</p>
+        </div>
+        
+        <div class="partners">
+            <div class="partner-logo">IIT Madras</div>
+            <div class="partner-logo">IIT Delhi</div>
+            <div class="partner-logo">IIT Bombay</div>
+            <div class="partner-logo">IIT Kharagpur</div>
+            <div class="partner-logo">IIT Kanpur</div>
+            <div class="partner-logo">IISc Bangalore</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Courses</a></li>
+                        <li><a href="#">Assignments</a></li>
+                        <li><a href="#">Exam Schedule</a></li>
+                        <li><a href="#">Results</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Video Lectures</a></li>
+                        <li><a href="#">Study Materials</a></li>
+                        <li><a href="#">Discussion Forum</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Subscribe to Newsletter</h3>
+                    <p>Stay updated with our latest courses and announcements</p>
+                    <div class="search-box">
+                        <input type="email" placeholder="Your email address">
+                        <button>Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 NPTEL - National Programme on Technology Enhanced Learning. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('nav').classList.remove('active');
+            });
+        });
+
+        // Simple search functionality
+        document.querySelector('.search-box button').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-box input').value;
+            if (searchTerm.trim() !== '') {
+                alert(`Searching for: ${searchTerm}`);
+                // In a real implementation, this would redirect to search results
+            }
+        });
+
+        // Newsletter subscription
+        document.querySelector('.footer-column .search-box button').addEventListener('click', function() {
+            const email = document.querySelector('.footer-column .search-box input').value;
+            if (email.trim() !== '') {
+                alert(`Thank you for subscribing with: ${email}`);
+                document.querySelector('.footer-column .search-box input').value = '';
+            }
+        });
+    </script>
+</body>
+</html>
